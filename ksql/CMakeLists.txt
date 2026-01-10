@@ -82,6 +82,7 @@ kmcmake_cc_binary(
         ${PROJECT_NAME}::linenoise_static
         ${PROJECT_NAME}::shell_static
         ${KMCMAKE_DEPS_LINK}
+        ${KMCMAKE_STATIC_BIN_OPTION}
         PUBLIC
 )
 
