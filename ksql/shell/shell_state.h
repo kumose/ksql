@@ -16,7 +16,7 @@
 //
 
 #pragma once
-
+#include <ksql/version.h>
 #include <vector>
 #include <string>
 #include <cstdint>

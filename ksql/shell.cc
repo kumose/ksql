@@ -15,6 +15,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#include <ksql/version.h>
+
 #if (defined(_WIN32) || defined(WIN32)) && !defined(_CRT_SECURE_NO_WARNINGS)
 /* This needs to come before any includes for MSVC compiler */
 #define _CRT_SECURE_NO_WARNINGS
@@ -95,6 +97,7 @@
 #endif
 #include <sys/types.h>
 #include <sys/stat.h>
+
 
 #ifdef HAVE_LINENOISE
 #include <ksql/linenoise/linenoise.h>

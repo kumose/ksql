@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-
+#include <ksql/version.h>
 #include <ksql/shell/shell_state.h>
 #include <ksql/shell/shell_highlight.h>
 #include <ksql/shell/shell_prompt.h>
@@ -467,6 +467,13 @@ namespace goose_shell {
         return MetadataResult::SUCCESS;
     }
 
+    static std::string right_padding(const std::string &str, int n, char pd = ' ') {
+        if (str.size() >= n) {
+            return str.substr(0, n);
+        }
+        return str + std::string(n - str.size(), pd);
+    }
+
     MetadataResult ShowVersion(ShellState &state, const vector<string> &args) {
         state.PrintF("Goose %s (%s) %s\n" /*extra-version-info*/, goose::Goose::LibraryVersion(),
                      goose::Goose::ReleaseCodename(), goose::Goose::SourceID());
@@ -480,6 +487,13 @@ namespace goose_shell {
 #elif defined(__GNUC__) && defined(__VERSION__)
         state.PrintF("gcc-" __VERSION__ "\n");
 #endif
+        state.PrintF("ksql:\n");
+        state.PrintF("    %s %s\n", right_padding("version", 20), KSQL_VERSION_STRING);
+        state.PrintF("    %s %s\n", right_padding("build system", 20),KSQL_BUILD_SYSTEM);
+        state.PrintF("    %s %s\n", right_padding("build type", 20),KSQL_BUILD_TYPE_STRING);
+        state.PrintF("    %s %s:%s\n", right_padding("compiler", 20),KSQL_CXX_COMPILER_ID, KSQL_CXX_COMPILER_VERSION);
+        state.PrintF("    %s %s\n", right_padding("commit hash", 20),KSQL_GIT_COMMIT_SHORT_HASH);
+
         return MetadataResult::SUCCESS;
     }
 

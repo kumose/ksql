@@ -54,6 +54,7 @@ set(KMCMAKE_DEPS_LINK
         json_extension
         parquet_extension
         goose-autocomplete::autocomplete_extension_static
+        goose-tpch::tpch_extension_static
         goose_static
         ${goose_DEPS_LINK}
         ${KMCMAKE_SYSTEM_DYLINK}

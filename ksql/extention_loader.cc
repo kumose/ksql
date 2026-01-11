@@ -18,6 +18,7 @@
 #include <goose/main/extension/generated_extension_loader.h>
 #include <goose/main/extension_helper.h>
 #include <goose-autocomplete/autocomplete_extension.h>
+#include <tpch_extension.h>
 
 namespace goose {
     class CoreFunctionsExtension : public Extension {
@@ -81,6 +82,11 @@ namespace goose {
             return ExtensionLoadResult::LOADED_EXTENSION;
         }
 
+        if (extension == "tpch") {
+            db.LoadStaticExtension<TpchExtension>();
+            return ExtensionLoadResult::LOADED_EXTENSION;
+        }
+
         return ExtensionLoadResult::NOT_LOADED;
     }
 
@@ -90,7 +96,8 @@ namespace goose {
             "parquet",
             "json",
             "icu",
-            "autocomplete"
+            "autocomplete",
+            "tpch"
         };
         return VEC;
     }

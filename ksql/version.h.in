@@ -86,3 +86,5 @@
 #define @PROJECT_NAME_UP@_GIT_IS_DIRTY @GIT_IS_DIRTY@
 // Combined Git version string (e.g., "0.6.0-a1b2c3d" or "0.6.0-a1b2c3d-dirty")
 #define @PROJECT_NAME_UP@_GIT_VERSION_STRING "@GIT_VERSION_STRING@"
+
+#define HAVE_LINENOISE 1

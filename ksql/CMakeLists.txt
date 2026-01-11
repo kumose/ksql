@@ -17,6 +17,9 @@
 # below are examples, after initialization, modify it to your own.
 ###########################################################################
 ###kmcmake_example
+
+#add_definitions(-DSQLITE_SHELL_IS_UTF8)
+
 set(LN_SRC
         linenoise/highlighting.cc
         linenoise/history.cc
