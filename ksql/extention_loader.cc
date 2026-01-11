@@ -17,20 +17,24 @@
 
 #include <goose/main/extension/generated_extension_loader.h>
 #include <goose/main/extension_helper.h>
+#include <goose-autocomplete/autocomplete_extension.h>
 
 namespace goose {
-
     class CoreFunctionsExtension : public Extension {
     public:
         void Load(ExtensionLoader &db) override;
+
         std::string Name() override;
+
         std::string Version() const override;
     };
 
     class ParquetExtension : public Extension {
     public:
         void Load(ExtensionLoader &loader) override;
+
         std::string Name() override;
+
         std::string Version() const override;
     };
 
@@ -38,59 +42,66 @@ namespace goose {
     class JsonExtension : public Extension {
     public:
         void Load(ExtensionLoader &loader) override;
+
         std::string Name() override;
+
         std::string Version() const override;
     };
 
     class IcuExtension : public Extension {
     public:
         void Load(ExtensionLoader &loader) override;
+
         std::string Name() override;
+
         std::string Version() const override;
     };
 
 
-
-
     //! Looks through the CMake-generated list of extensions that are linked into Goose currently to try load <extension>
     ExtensionLoadResult ExtensionHelper::LoadExtension(Goose &db, const std::string &extension) {
-        if (extension=="core_functions") {
+        if (extension == "core_functions") {
             db.LoadStaticExtension<CoreFunctionsExtension>();
             return ExtensionLoadResult::LOADED_EXTENSION;
         }
-        if (extension=="parquet") {
+        if (extension == "parquet") {
             db.LoadStaticExtension<ParquetExtension>();
             return ExtensionLoadResult::LOADED_EXTENSION;
         }
-        if (extension=="json") {
+        if (extension == "json") {
             db.LoadStaticExtension<JsonExtension>();
             return ExtensionLoadResult::LOADED_EXTENSION;
         }
-        if (extension=="icu") {
+        if (extension == "icu") {
             db.LoadStaticExtension<IcuExtension>();
+            return ExtensionLoadResult::LOADED_EXTENSION;
+        }
+        if (extension == "autocomplete") {
+            db.LoadStaticExtension<AutocompleteExtension>();
             return ExtensionLoadResult::LOADED_EXTENSION;
         }
 
         return ExtensionLoadResult::NOT_LOADED;
     }
 
-    vector<string> LinkedExtensions(){
+    vector<string> LinkedExtensions() {
         vector<string> VEC = {
             "core_functions",
             "parquet",
             "json",
-            "icu"
-            };
+            "icu",
+            "autocomplete"
+        };
         return VEC;
     }
 
     void ExtensionHelper::LoadAllExtensions(Goose &db) {
-        for (auto& ext_name : LinkedExtensions()) {
+        for (auto &ext_name: LinkedExtensions()) {
             LoadExtension(db, ext_name);
         }
     }
 
-    vector<string> ExtensionHelper::LoadedExtensionTestPaths(){
+    vector<string> ExtensionHelper::LoadedExtensionTestPaths() {
         vector<string> VEC = {
         };
         return VEC;

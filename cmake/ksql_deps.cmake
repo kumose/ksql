@@ -39,6 +39,8 @@ endif ()
 find_package(Threads REQUIRED)
 find_package(turbo REQUIRED)
 find_package(goose REQUIRED)
+find_package(goose-autocomplete REQUIRED)
+find_package(goose-tpch REQUIRED)
 ############################################################
 #
 # add you libs to the KMCMAKE_DEPS_LINK variable eg as turbo
@@ -51,6 +53,7 @@ set(KMCMAKE_DEPS_LINK
         icu_extension
         json_extension
         parquet_extension
+        goose-autocomplete::autocomplete_extension_static
         goose_static
         ${goose_DEPS_LINK}
         ${KMCMAKE_SYSTEM_DYLINK}

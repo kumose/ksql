@@ -90,6 +90,8 @@ if(NOT PYTHON_EXTENSION)
     ##############################################
     # header installing
     #############################################
+    # no header for this, only binary
+    #[[
     install(DIRECTORY ${PROJECT_NAME}
             DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
             FILES_MATCHING
@@ -97,7 +99,7 @@ if(NOT PYTHON_EXTENSION)
             PATTERN "*.h"
             PATTERN "*.hpp"
             )
-
+    ]]
     # Layout. This works for all platforms:
     #   * <prefix>//cmake/<PROJECT-NAME>
     #   * <prefix>/*/

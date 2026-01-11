@@ -1,6 +1,8 @@
 {
   "dependencies": [
     "goose",
-    "turbo"
+    "goose-autocomplete",
+    "turbo",
+    "goose-tpch"
   ]
 }
